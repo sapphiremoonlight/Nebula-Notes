@@ -34,11 +34,4 @@
 
 ---
 
-## 🚀 Running Locally
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/sapphiremoonlight/Nebula-Notes.git
-   cd Nebula-Notes
 
