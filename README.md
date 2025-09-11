@@ -33,60 +33,6 @@
 | Cream (Text)| `#f5f5dc` |
 
 ---
-Gotcha! Here’s a simple step-by-step for cloning your repo **without** the GitHub app, just using your web browser and your computer’s terminal (Command Prompt, Terminal, or PowerShell):
-
----
-
-# How to Clone the Repo Without GitHub Desktop
-
-1. **Go to the GitHub web page of your repo**
-   Open your browser and go to:
-   `https://github.com/sapphiremoonlight/Nebula-Notes`
-
-2. **Copy the repository URL**
-
-   * Click the green **Code** button near the top right.
-   * Under “Clone”, make sure **HTTPS** is selected.
-   * Click the clipboard icon to copy the URL (`https://github.com/sapphiremoonlight/Nebula-Notes.git`).
-
-3. **Open your Terminal (or Command Prompt / PowerShell)**
-
-   * On **Windows**: Press `Win + R`, type `cmd` or `powershell`, and hit Enter.
-   * On **Mac/Linux**: Open the Terminal app.
-
-4. **Navigate to the folder where you want to put the project**
-   Use the `cd` command. For example:
-
-   ```bash
-   cd Documents
-   ```
-
-   or wherever you want the project folder.
-
-5. **Run the git clone command**
-   Paste the URL you copied, like this:
-
-   ```bash
-   git clone https://github.com/sapphiremoonlight/Nebula-Notes.git
-   ```
-
-6. **Go inside the new project folder**
-
-   ```bash
-   cd Nebula-Notes
-   ```
-
-7. **Open the project in your browser**
-   Just open the `index.html` file (double-click it or open it with your favorite code editor and launch it in browser).
-
----
-
-**Note:** If you don’t have Git installed yet, you’ll need to install it first:
-
-* [Download Git](https://git-scm.com/downloads) and install it on your computer.
-* After installing, you can run the commands above.
-
----
 
 ## 🚀 Running Locally
 
@@ -95,3 +41,4 @@ Gotcha! Here’s a simple step-by-step for cloning your repo **without** the Git
    ```bash
    git clone https://github.com/sapphiremoonlight/Nebula-Notes.git
    cd Nebula-Notes
+
