@@ -1,24 +1,24 @@
-# 🌌 Nebula-Notes
-✨ A minimalist, aesthetic journaling web app for cosmic self-reflection. Write, track moods, earn badges, and vibe out to your favorite playlists. Powered by HTML, CSS, and JavaScript.
+# 🌌 Nebula-Notes  
+✨ A minimalist and aesthetic journaling web app designed for cosmic self-reflection. Write your thoughts, track your moods, earn badges, and vibe out to your favorite playlists. Built with pure HTML, CSS, and JavaScript.
 
 ---
 
 ## ✨ Features
 
 - 📝 **Journal Entries**  
-  Create, tag, and save personal journal entries with titles, timestamps, and categories.
+  Create, tag, and save personal journal entries complete with titles, timestamps, and categories.
 
 - 🎭 **Mood Tracker**  
-  Visually track your moods on a monthly calendar using colorful emoji circles.
+  Track your moods visually on a monthly calendar with colorful emoji circles.
 
-- 🏆 **Gamification (Coming Soon)**  
-  Earn badges for consistency, mood streaks, and writing challenges.
+- 🏆 **Gamification**  
+  Engage with Tarot-themed gamification, accompanied by a lunar companion for added cosmic flair.
 
-  - 🎧 **Spotify Integration**  
-  Built-in playlist embed so you can listen to your favorite lo-fi or writing tunes.
+- 🎧 **Spotify Integration**  
+  Embedded playlists let you listen to your favorite lo-fi or writing tunes as you journal.
 
-- 🔍 **Search & Filter** *(Planned)*  
-  Search entries by tag, mood, date, or keyword.
+- 🔍 **Search & Filter** *(Coming Soon)*  
+  Easily search entries by tag, mood, date, or keywords.
 
 ---
 
@@ -34,10 +34,10 @@
 
 ---
 
-## 🚀 How to Run It Locally
+## 🚀 Running Locally
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https:///sapphiremoonlight/Nebula-Notes.git
-   cd nebula-notes
+   git clone https://github.com/sapphiremoonlight/Nebula-Notes.git
+   cd Nebula-Notes
