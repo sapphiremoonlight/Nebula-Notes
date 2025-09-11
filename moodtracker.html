@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mood Tracker 🌙</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/moodtracker.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">🌌 Nebula Notes</div>
+  <button id="menu-btn" class="hamburger">☰</button>
+
+  <nav id="nav-menu" class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="entries.html">Entries</a>
+    <a href="#" class="active">Mood Tracker</a>
+    <a href="game.html">Game</a>
+    <a href="rocket.html">Rocket</a>
+  </nav>
+</header>
+
+  <main class="container">
+    <h2>🌙 Mood Tracker</h2>
+	<div class="calendar-header">
+  <button id="prev-month">←</button>
+  <span id="current-month-year"></span>
+  <button id="next-month">→</button>
+</div>
+
+    <div id="calendar" class="calendar-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Nebula Notes • Track your cosmic moods 💫</p>
+  </footer>
+	<!-- Loading Screen Overlay -->
+	<div id="loadingOverlay">
+  	<img src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png" alt="Loading Rocket" />
+  	<p>Launching your cosmic journey...</p>
+	</div>
+ <script src="scripts/script.js"></script>
+  <script src="scripts/moodtracker.js"></script>
+</body>
+</html>

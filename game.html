@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nebula Tarot — Living Deck</title>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles/game.css" />
+ <link rel="stylesheet" href="styles/global.css" />
+  <!-- Font Awesome CDN for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <div class="container">
+    <h1>🌌 Nebula Tarot — Living Deck</h1>
+    <p>Ask your question, then let the stars reveal your card.</p>
+
+    <textarea id="userQuestion" placeholder="Type your question to the cosmos..."></textarea>
+    <button id="drawCard">Draw Your Card 🌠</button>
+
+    <div id="cardDisplay" class="card hidden">
+      <h2 id="cardTitle"></h2>
+      <img id="cardImage" src="" alt="Tarot Card" />
+      <p id="cardMeaning"></p>
+    </div>
+  </div>
+
+  <!-- Floating icon buttons -->
+  <div class="floating-buttons">
+    <a href="index.html" title="Back to Nebula" class="icon-button">
+      <i class="fa-solid fa-rocket"></i>
+    </a>
+    <a href="rocket.html" title="Rocket" class="icon-button">
+      <i class="fa-solid fa-star"></i>
+    </a>
+
+	<!-- 🌙 Moon Companion Button -->
+  	<a href="javascript:void(0)" id="moonButton" title="Moon Companion" class="icon-button">
+  <i class="fa-solid fa-moon"></i>
+	</a>
+</div>
+
+<!-- 🌙 Companion Tray -->
+<div id="moonTray">
+  <img id="moonPhaseImage" src="assets/moon/moon-01.png" alt="Moon Phase" />
+  <p id="moonMessage">"Hello, moonbeam."</p>
+  <button id="closeTray">✖️</button>
+</div>  
+
+<!-- 🚀 Loading Screen Overlay -->
+<div id="loadingOverlay">
+  <img
+    src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png"
+    alt="Loading Rocket"
+  />
+  <p>Launching your cosmic journey...</p>
+</div>
+
+ <script src="scripts/script.js"></script>
+<script src="scripts/game.js"></script>
+</body>
+</html>

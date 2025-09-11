@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nebula Rocket — Launch Progress</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Raleway&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #0d0c1d, #1d1b2e);
+      color: #eae6f8;
+      font-family: 'Raleway', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    header {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      margin-top: 1rem;
+      letter-spacing: 2px;
+      z-index: 10;
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+    }
+    .rocket-container {
+      position: relative;
+      width: 120px;
+      height: 300px;
+      border: 2px solid #7a4fff;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #3a2f78, #1f1b3f);
+      overflow: visible;
+      box-shadow: 0 0 20px #7a4fff;
+      margin-bottom: 1rem;
+    }
+    .rocket {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      transition: bottom 0.5s ease-in-out;
+      filter: drop-shadow(0 0 6px #ff6f91);
+      user-select: none;
+    }
+    .progress-bar {
+      width: 80%;
+      height: 20px;
+      background: #322f4b;
+      border-radius: 10px;
+      margin: 1rem auto;
+      box-shadow: inset 0 0 5px #7a4fff;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #9e5cff;
+      width: 0%;
+      border-radius: 10px 0 0 10px;
+      transition: width 0.5s ease;
+      box-shadow: 0 0 10px #bb88ff;
+    }
+    button {
+      background: #7a4fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px #7a4fff;
+      user-select: none;
+    }
+    button:hover {
+      background: #9e5cff;
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      min-height: 2rem;
+      text-align: center;
+      font-style: italic;
+      color: #cdb4db;
+      user-select: none;
+    }
+    footer {
+      margin-bottom: 1rem;
+      color: #6c5ce7;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <header>🚀 Nebula Rocket — Launch Progress</header>
+<!-- Loading Screen Overlay -->
+<div id="loadingOverlay" style="
+  position: fixed;
+  inset: 0;
+  background: #0d0c1dcc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+">
+  <img
+    src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png"
+    alt="Loading Rocket"
+    style="width: 100px; filter: drop-shadow(0 0 10px #7a4fff);"
+  />
+  <p style="color: #9e5cff; font-family: 'Orbitron', sans-serif; margin-top: 1rem;">
+    Launching your cosmic journey...
+  </p>
+</div>
+
+  <main>
+    <div class="rocket-container" aria-label="Rocket progress container" id="rocketContainer">
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png"
+        alt="Rocket"
+        class="rocket"
+        id="rocket"
+      />
+    </div>
+    <div
+      class="progress-bar"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+      id="progressBar"
+    >
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <button id="missionBtn">Complete Mission</button>
+    <button id="resetBtn" style="background:#d9534f; margin-top:0.5rem;">Reset Progress</button>
+    <div class="message" id="messageArea">Ready for launch?</div>
+  </main>
+  <footer>© 2025 Nebula Tarot</footer>
+
+  <script>
+    const missionBtn = document.getElementById('missionBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const progressFill = document.getElementById('progressFill');
+    const rocket = document.getElementById('rocket');
+    const messageArea = document.getElementById('messageArea');
+    const progressBar = document.getElementById('progressBar');
+
+    const maxMissions = 10;
+    let missionsCompleted = parseInt(localStorage.getItem('missionsCompleted')) || 0;
+
+    function updateUI() {
+      const progressPercent = (missionsCompleted / maxMissions) * 100;
+      progressFill.style.width = progressPercent + '%';
+      progressBar.setAttribute('aria-valuenow', progressPercent);
+
+      const maxMove = 250;
+      const bottomPos = 10 + (maxMove * (missionsCompleted / maxMissions));
+      rocket.style.bottom = bottomPos + 'px';
+
+      if (missionsCompleted === 0) {
+        messageArea.textContent = "Ready for launch? Let's get started!";
+      } else if (missionsCompleted < maxMissions * 0.3) {
+        messageArea.textContent = "Fueling up... You're on your way!";
+      } else if (missionsCompleted < maxMissions * 0.7) {
+        messageArea.textContent = "Rocket rising! Keep going!";
+      } else if (missionsCompleted < maxMissions) {
+        messageArea.textContent = "Almost at escape velocity! Final push!";
+      } else {
+        messageArea.textContent = "🚀 Blast off! You've launched your mental nebula!";
+      }
+    }
+
+    missionBtn.addEventListener('click', () => {
+      if (missionsCompleted < maxMissions) {
+        missionsCompleted++;
+        localStorage.setItem('missionsCompleted', missionsCompleted);
+        updateUI();
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      missionsCompleted = 0;
+      localStorage.setItem('missionsCompleted', missionsCompleted);
+      updateUI();
+    });
+
+    // Initialize on page load
+    updateUI();
+
+  const loadingOverlay = document.getElementById('loadingOverlay');
+
+  // Function to show loading screen, then navigate
+  function showLoadingAndNavigate(url) {
+    loadingOverlay.style.pointerEvents = 'auto';
+    loadingOverlay.style.opacity = '1';
+
+    // Optional: disable scroll while loading
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 1500); // 1.5 seconds delay to show loading
+  }
+
+  // Intercept all internal links to show loading overlay
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    // Only intercept internal page links (no external, no anchors)
+    if (
+      href &&
+      !href.startsWith('http') &&
+      !href.startsWith('#') &&
+      !href.startsWith('mailto:') &&
+      !href.startsWith('javascript:')
+    ) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showLoadingAndNavigate(href);
+      });
+    }
+  });
+  </script>
+</body>
+</html>

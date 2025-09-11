@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nebula Notes 🌌</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+<header class="site-header">
+  <div class="logo">🌌 Nebula Notes</div>
+  <button id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+  <nav id="nav-menu" class="nav-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="#" class="active">Entries</a>
+    <a href="moodtracker.html">Mood Tracker</a>
+    <a href="game.html">Game</a>
+    <a href="rocket.html">Rocket</a>
+  </nav>
+</header>
+
+  <main class="container">
+    <!-- Journal Entry Form -->
+	<!-- 
+	<button id="reset-entries" style="margin-top: 1rem; background: #ff4e4e; color: white;">
+ 	🧨 Reset All Entries
+	</button>
+	-->
+
+    <section class="journal-card">
+      <h2>Write Your Entry</h2>
+      
+      <form id="entryForm">
+        <label for="entry-title">Title</label>
+        <input type="text" id="entry-title" placeholder="A moment in time..." />
+
+        <label for="entry-date">Date</label>
+        <input type="date" id="entry-date" />
+
+        <label for="entry-tags">Tags (comma-separated)</label>
+        <input type="text" id="entry-tags" placeholder="e.g., mood, dream, work" />
+
+        	<label>Mood (select all that apply)</label>
+<div class="mood-selector" id="mood-selector">
+  <div class="mood tooltip" data-mood="angry" style="--color: #ff4e4e;">
+    😡<span class="tooltiptext">Angry</span>
+  </div>
+  <div class="mood tooltip" data-mood="average" style="--color: #b0b0b0;">
+    😐<span class="tooltiptext">Average</span>
+  </div>
+  <div class="mood tooltip" data-mood="happy" style="--color: #ffd166;">
+    😊<span class="tooltiptext">Happy</span>
+  </div>
+  <div class="mood tooltip" data-mood="sad" style="--color: #78a1bb;">
+    😢<span class="tooltiptext">Sad</span>
+  </div>
+  <div class="mood tooltip" data-mood="energetic" style="--color: #7ce577;">
+    ⚡<span class="tooltiptext">Energetic</span>
+  </div>
+  <div class="mood tooltip" data-mood="productive" style="--color: #6ed3cf;">
+    ✨<span class="tooltiptext">Productive</span>
+  </div>
+  <div class="mood tooltip" data-mood="anxious" style="--color: #f39c9c;">
+    😰<span class="tooltiptext">Anxious</span>
+  </div>
+  <div class="mood tooltip" data-mood="annoyed" style="--color: #d68fd6;">
+    😒<span class="tooltiptext">Annoyed</span>
+  </div>
+  <div class="mood tooltip" data-mood="stressed" style="--color: #f97575;">
+    💥<span class="tooltiptext">Stressed</span>
+  </div>
+  <div class="mood tooltip" data-mood="drained" style="--color: #8c8ca1;">
+    💤<span class="tooltiptext">Drained</span>
+  </div>
+</div>
+<input type="hidden" id="selected-moods" name="selected-moods" />
+
+
+
+        <label for="entry-content">Your thoughts</label>
+        <textarea id="entry-content" rows="8" placeholder="Let your thoughts flow..."></textarea>
+
+        <button type="submit">✨ Save Entry</button>
+      </form>
+    </section>
+
+	<hr class="divider" />
+
+	<!-- Display Saved Entries -->
+	<section id="saved-entries" class="journal-card">
+	 <h2>📖 Your Past Entries</h2>
+	<div id="entry-list">
+    	<!-- Entries will be injected here by JS -->
+  </div>
+</section>
+  </main>
+
+  <!-- Spotify Player (Floating) -->
+ <div id="spotify-player">
+  <iframe style="border-radius:12px" 
+    src="https://open.spotify.com/embed/playlist/0izlnveXyc7iw8uLZ87acj?utm_source=generator" 
+    width="300" height="200" frameBorder="0" allowtransparency="true" allow="encrypted-media">
+  </iframe>
+</div>
+<!-- Footer -->
+<footer class="site-footer">
+  <p>© 2025 Nebula Notes • Crafted with 💜 and 🌌</p>
+</footer>
+
+<!-- Loading Screen Overlay -->
+	<div id="loadingOverlay">
+  	<img src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png" alt="Loading Rocket" />
+  	<p>Launching your cosmic journey...</p>
+	</div>
+
+<script>
+  const moodColors = { 
+    angry: "#ff4e4e", 
+    average: "#b0b0b0", 
+    happy: "#ffd166", 
+    sad: "#78a1bb", 
+    energetic: "#7ce577", 
+    productive: "#6ed3cf", 
+    anxious: "#f39c9c", 
+    annoyed: "#d68fd6", 
+    stressed: "#f97575", 
+    drained: "#8c8ca1", 
+  };
+
+  function loadEntries() {
+    const entryList = document.getElementById("entry-list");
+    if (!entryList) return;
+
+    entryList.innerHTML = ""; // clear previous entries
+
+    // Gather entries from localStorage
+    const entries = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith("entry-")) {
+        try {
+          const entry = JSON.parse(localStorage.getItem(key));
+          entries.push(entry);
+        } catch(e) {
+          console.warn("Could not parse entry", key);
+        }
+      }
+    }
+
+    if (entries.length === 0) {
+      entryList.innerHTML = "<p>No entries found yet. Start writing your first one!</p>";
+      return;
+    }
+
+    // Sort entries by date descending or by ID fallback
+    entries.sort((a, b) => {
+      if (a.date && b.date) return new Date(b.date) - new Date(a.date);
+      return b.id - a.id;
+    });
+
+    entries.forEach(entry => {
+      const moods = (entry.moods || [])
+        .map(mood => `<span class="mood-dot" title="${mood}" style="background-color:${moodColors[mood] || '#ccc'};"></span>`)
+        .join(" ");
+
+      const entryEl = document.createElement("div");
+      entryEl.className = "journal-card";
+      entryEl.style.marginTop = "1rem";
+
+      entryEl.innerHTML = `
+        <h3>${entry.title || "Untitled"}</h3>
+        <p><strong>Date:</strong> ${entry.date || "Unknown"}</p>
+        <p><strong>Tags:</strong> ${entry.tags || "None"}</p>
+        <p><strong>Mood:</strong> ${moods}</p>
+        <p>${entry.content || ""}</p>
+      `;
+
+      entryList.appendChild(entryEl);
+    });
+  }
+
+  // Run on DOM loaded
+  document.addEventListener("DOMContentLoaded", loadEntries);
+</script>
+  <script src="scripts/script.js"></script>
+</body>
+</html>

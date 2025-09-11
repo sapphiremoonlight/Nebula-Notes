@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌌 Nebula Notes</title>
+ <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="particles-js"></div>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="logo">🌌 Nebula Notes</div>
+    <button id="menu-btn" class="hamburger">☰</button>
+    <nav id="nav-menu" class="nav-menu">
+      <a href="#" class="active">Home</a>
+        <a href="entries.html">Entries</a>
+      <a href="moodtracker.html">Mood Tracker</a>
+	<a href="game.html">Game</a>
+      <a href="rocket.html">Rocket</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Nebula Notes 🌙</h1>
+    <p>Your cosmic space to reflect, track, and grow.</p>
+    <a href="entries.html" class="cta-button">✨ Start Journaling</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>📝 Journaling</h3>
+      <p>Write and save your thoughts daily with date & mood.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📅 Mood Tracker</h3>
+      <p>Log your mood using emojis and colors on a calendar.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🏆 Rocket</h3>
+      <p>Play the cute rocket game in your spare time.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔎 Smart Search</h3>
+      <p>Search by title, mood, tag, or entry content.</p>
+    </div>
+  </section>
+
+  <!-- Recent Entries Preview -->
+  <section class="recent-entries">
+    <h2>📖 Recent Entries</h2>
+    <div id="entry-preview-list"></div>
+  </section>
+
+  <!-- Spotify Player -->
+  <section id="spotify-player">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0izlnveXyc7iw8uLZ87acj?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>
+
+  <!-- Motivational Quote -->
+  <section class="quote">
+    <blockquote>“Even the smallest stars shine in the dark.”</blockquote>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Nebula Notes • Created with stardust ✨</p>
+    <a href="https://github.com/yourusername/nebula-notes" target="_blank">GitHub Repo</a>
+  </footer>
+
+	<!-- Loading Screen Overlay -->
+	<div id="loadingOverlay">
+  	<img src="https://static.vecteezy.com/system/resources/previews/035/982/442/original/ai-generated-3d-flying-rocket-isolated-on-transparent-background-free-png.png" alt="Loading Rocket" />
+  	<p>Launching your cosmic journey...</p>
+	</div>
+   <script src="scripts/script.js"></script>
+  <script src="scripts/index.js"></script>
+
+</body>
+</html>
